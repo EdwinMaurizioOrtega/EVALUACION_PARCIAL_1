@@ -1,0 +1,29 @@
+@model SistemaVentas.Models.VentaModel
+
+@{
+    ViewData["Title"] = "Detalle de Venta";
+}
+
+<h2>Detalle de Venta</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Fecha</dt>
+    <dd class="col-sm-9">@Model.fecha_venta.ToString("dd/MM/yyyy HH:mm")</dd>
+
+    <dt class="col-sm-3">Cliente</dt>
+    <dd class="col-sm-9">@Model.Cliente?.nombre @Model.Cliente?.apellido</dd>
+
+    <dt class="col-sm-3">Producto</dt>
+    <dd class="col-sm-9">@Model.Producto?.nombre</dd>
+
+    <dt class="col-sm-3">Cantidad</dt>
+    <dd class="col-sm-9">@Model.cantidad</dd>
+
+    <dt class="col-sm-3">Precio Unitario</dt>
+    <dd class="col-sm-9">@Model.precio_unitario.ToString("C")</dd>
+
+    <dt class="col-sm-3">Total</dt>
+    <dd class="col-sm-9"><strong>@Model.total.ToString("C")</strong></dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

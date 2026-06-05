@@ -1,0 +1,34 @@
+@model SistemaVentas.Models.VentaModel
+
+@{
+    ViewData["Title"] = "Eliminar Venta";
+}
+
+<h2>Eliminar Venta</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro? Al eliminar esta venta, se devolverá el stock al producto.
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Fecha</dt>
+    <dd class="col-sm-9">@Model.fecha_venta.ToString("dd/MM/yyyy HH:mm")</dd>
+
+    <dt class="col-sm-3">Cliente</dt>
+    <dd class="col-sm-9">@Model.Cliente?.nombre @Model.Cliente?.apellido</dd>
+
+    <dt class="col-sm-3">Producto</dt>
+    <dd class="col-sm-9">@Model.Producto?.nombre</dd>
+
+    <dt class="col-sm-3">Cantidad</dt>
+    <dd class="col-sm-9">@Model.cantidad</dd>
+
+    <dt class="col-sm-3">Total</dt>
+    <dd class="col-sm-9"><strong>@Model.total.ToString("C")</strong></dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="venta_id" />
+    <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

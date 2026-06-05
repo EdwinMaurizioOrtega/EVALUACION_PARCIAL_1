@@ -1,0 +1,28 @@
+@model SistemaVentas.Models.ProductoModel
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<h2>Eliminar Producto</h2>
+
+<div class="alert alert-danger">
+    ¿Está seguro que desea eliminar este producto?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.nombre</dd>
+
+    <dt class="col-sm-3">Precio</dt>
+    <dd class="col-sm-9">@Model.precio.ToString("C")</dd>
+
+    <dt class="col-sm-3">Stock</dt>
+    <dd class="col-sm-9">@Model.stock</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="producto_id" />
+    <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,48 @@
+@model IEnumerable<SistemaVentas.Models.ProductoModel>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<h2>Productos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Producto</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nombre</td>
+                <td>@item.descripcion</td>
+                <td>@item.precio.ToString("C")</td>
+                <td>
+                    @if (item.stock <= 5)
+                    {
+                        <span class="badge bg-danger">@item.stock</span>
+                    }
+                    else
+                    {
+                        <span>@item.stock</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.producto_id" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@item.producto_id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.producto_id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

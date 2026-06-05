@@ -1,0 +1,28 @@
+@model SistemaVentas.Models.ClienteModel
+
+@{
+    ViewData["Title"] = "Eliminar Cliente";
+}
+
+<h2>Eliminar Cliente</h2>
+
+<div class="alert alert-danger">
+    ¿Está seguro que desea eliminar este cliente?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.nombre @Model.apellido</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.email</dd>
+
+    <dt class="col-sm-3">Teléfono</dt>
+    <dd class="col-sm-9">@Model.telefono</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="cliente_id" />
+    <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

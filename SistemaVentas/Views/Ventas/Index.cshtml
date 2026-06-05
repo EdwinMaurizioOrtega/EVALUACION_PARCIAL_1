@@ -1,0 +1,52 @@
+@model IEnumerable<SistemaVentas.Models.VentaModel>
+
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h2>Ventas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nueva Venta</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.fecha_venta.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@item.Cliente?.nombre @item.Cliente?.apellido</td>
+                <td>@item.Producto?.nombre</td>
+                <td>@item.cantidad</td>
+                <td>@item.precio_unitario.ToString("C")</td>
+                <td><strong>@item.total.ToString("C")</strong></td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.venta_id" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.venta_id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model.Any())
+    {
+        <tfoot>
+            <tr class="table-dark">
+                <td colspan="5"><strong>Total General</strong></td>
+                <td><strong>@Model.Sum(v => v.total).ToString("C")</strong></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    }
+</table>
